@@ -1,1 +1,9 @@
-home page
+<!-- This will import the block from the base.html page -->
+{% extends "./base.html" %}
+{% load static %}
+{% block title %}Home{% endblock %}
+<!-- This will change the title of the page to Home instead of My Shop was its in the base.html  -->
+
+{% block content %}
+    hello page
+{% endblock %}
