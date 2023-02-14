@@ -14,12 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include 
 from django.conf import settings #import settings to use the media settings we created 
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('store.urls', namespace='store')), #namespace will allow us to access our urls in a easier way later down the line
+    #include will have the CORE app check the STORE app for the urls file 
 ]
 
 if settings.DEBUG:
