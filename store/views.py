@@ -19,3 +19,8 @@ def all_products(request): #request is the request the user is making on the web
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug, in_stock=True) #if the item is not in stock, it will not show the item
     return render(request, 'store/products/detail.html', {'product':product})
+
+def category_list(request, category_slug):
+    category = get_object_or_404(Category, slug=category_slug)
+    products = Product.objects.filter(category=category) #using a sql query to filter through all product's category that match the category_slug from the line above
+    return render(request, 'store/products/category.html', {'category':category, 'products':products})
