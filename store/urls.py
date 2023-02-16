@@ -5,5 +5,6 @@ from . import views #we need to connect the urls folder to the views folder.  Th
 app_name = 'store' #app_name is matching the namespace path in the CORE urls folder
 
 urlpatterns = [
-    path('', views.all_products, name='all_products')  #need to connect this path to the view
+    path('', views.all_products, name='all_products'),  #need to connect this path to the view
+    path('item/<slug:slug>/', views.product_detail, name='product_detail'), #need to connect this path to the view
 ]
