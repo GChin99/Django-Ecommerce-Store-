@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('store.urls', namespace='store')), #namespace will allow us to access our urls in a easier way later down the line
     #include will have the CORE app check the STORE app for the urls file 
+    path('basket/', include('basket.urls', namespace='basket'))
 ]
 
 if settings.DEBUG:
