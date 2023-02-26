@@ -1,12 +1,12 @@
 from unittest import skip #this allows us to skip a test if we want
 
-from store.models import Category, Product
 from django.contrib.auth.models import User
 from django.http import HttpRequest
 from django.urls import reverse
 from django.test import Client, RequestFactory, TestCase #this allows us to pretend we are a user testing our website
 
-from store.views import all_products
+from store.models import Category, Product
+from store.views import product_all
 
 # an example of a test skip
 # @skip("demonstrating skipping")
@@ -51,18 +51,18 @@ class TestViewResponses(TestCase):
 
     def test_homepage_html(self):
         request = HttpRequest() #we can send a HttpRequest directly to one of our views
-        response = all_products(request)
+        response = product_all(request)
         html = response.content.decode('utf8') #the default code should be utf8
         print(html)
-        self.assertIn('<title>Home</title>', html)
+        self.assertIn('<title>BookStore</title>', html)
         self.assertTrue(html.startswith('\n<!DOCTYPE html>\n'))
         self.assertEqual(response.status_code, 200)
 
 # testing using RequestFactory instead of Client. Request Factory tests it as a function instead of as a web browser the way Client does
     def test_view_function(self):
-        request = self.factory.get('/item/django-beginners')
-        response = all_products(request)
+        request = self.factory.get('/django-beginners')
+        response = product_all(request)
         html = response.content.decode('utf8') #the default code should be utf8
-        self.assertIn('<title>Home</title>', html)
+        self.assertIn('<title>BookStore</title>', html)
         self.assertTrue(html.startswith('\n<!DOCTYPE html>\n'))
         self.assertEqual(response.status_code, 200)

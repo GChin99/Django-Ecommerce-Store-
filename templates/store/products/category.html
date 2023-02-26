@@ -1,10 +1,13 @@
 <!-- This will import the block from the base.html page -->
 {% extends "../base.html" %}
 {% load static %}
-{% block title %}Home{% endblock %}
+{% block title %}
+{% if category %}{{category.name}}{% else %}Products{% endif %}
 <!-- This will change the title of the page to Home instead of My Shop was its in the base.html  -->
-
+{% endblock %}
 {% block content %}
+
+
 <main>
     <div class="album py-5 bg-light">
         <div class="container">
