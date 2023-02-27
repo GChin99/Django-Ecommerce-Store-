@@ -1,4 +1,4 @@
-from .models import Category
+from .models import Category #import class Category from store.models.py folder 
 
 def categories(request):
     return {

@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'store',
-    'basket'
+    'basket',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 # 'store.views.categories' We are going to change this to match the other files 
                 'store.context_processors.categories', #We need to make a new file 'context processors in the store folder
+                'basket.context_processors.basket',
             ],
         },
     },
