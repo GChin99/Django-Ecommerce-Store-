@@ -12,5 +12,13 @@ class Basket():
         self.session = request.session
         basket = self.session.get('skey') #if the session key (skey) is already in the basket table 
         if 'skey' not in request.session:
-            basket = self.session['skey'] = {'number':1231231}  #create a new session skey in the basket table
+            basket = self.session['skey'] = {}  #create a new session skey in the basket table
         self.basket = basket
+
+    def add(self, product):
+        
+        product_id=product.id
+        if product_id not in self.basket:
+            self.basket[product_id] = {'price': product.price}
+        
+        self.session.modified = True

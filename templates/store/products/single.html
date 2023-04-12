@@ -36,7 +36,8 @@
                                 </select>
 
                             </div>
-                            <div class="col-6 text-end"><button type="button" class="btn btn-secondary btn-sm">Add to basket</button></div>
+                            <div class="col-6 text-end">
+    <button type="button" id="add-button" value="{{product.id}}" class="btn btn-secondary btn-sm">Add to basket</button></div>
                         </div>
                     </div>
                 </div>
@@ -45,4 +46,29 @@
     </main>
 
 </div>
+
+{% comment %} using jquery.  Need to make sure it's script is in the head of base.html {% endcomment %}
+<script>
+    $(document).on('click', '#add-button', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url "basket:basket_add"%}',
+            // create the url pand views page 
+            data: {
+                productid: $('#add-button').val(), 
+                // this getting the value from the add-button id above.  The value is the product id
+                csrfmiddlewaretoken:"{{csrf_token}}",
+                action: 'post'
+            },
+            success: function(json) {
+            // The data we get back is in json format
+            },
+            error: function (xhr, errmsg, err) {}
+            // This can be any message
+        });
+    })
+
+</script>
+
 {% endblock %}
